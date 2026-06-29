@@ -264,8 +264,8 @@
             "Intent": "={{ $('Classify & Draft Answer').item.json.output.intent }}",
             "Needs Human": "={{ $('Classify & Draft Answer').item.json.output.needs_human ? 'Yes' : 'No' }}",
             "Confidence": "={{ $('Classify & Draft Answer').item.json.output.confidence }}",
-            "Status": "={{ $json.status }}",
-            "Response": "={{ $json.response }}"
+            "Status": "={{ $('Classify & Draft Answer').item.json.output.needs_human ? 'Escalated to Human' : 'Auto-Answered' }}",
+            "Response": "={{ $('Classify & Draft Answer').item.json.output.needs_human ? `Hi ${$('Prepare Input').item.json.learnerName}, thanks for reaching out. This one needs a specialist, so I've escalated it to our human support team. Someone will follow up with you at ${$('Prepare Input').item.json.learnerEmail} shortly. Reference: ${$('Prepare Input').item.json.sessionId}.` : $('Classify & Draft Answer').item.json.output.answer }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -298,7 +298,7 @@
             {
               "id": "f1",
               "name": "output",
-              "value": "={{ $json.response }}",
+              "value": "={{ $('Classify & Draft Answer').item.json.output.needs_human ? `Hi ${$('Prepare Input').item.json.learnerName}, thanks for reaching out. This one needs a specialist, so I've escalated it to our human support team. Someone will follow up with you at ${$('Prepare Input').item.json.learnerEmail} shortly. Reference: ${$('Prepare Input').item.json.sessionId}.` : $('Classify & Draft Answer').item.json.output.answer }}",
               "type": "string"
             }
           ]
