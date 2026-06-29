@@ -103,22 +103,17 @@
     },
     {
       "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini",
-          "cachedResultName": "gpt-4o-mini"
-        },
+        "modelName": "models/gemini-2.0-flash",
         "options": {
           "temperature": 0.2
         }
       },
-      "id": "node-openai-model",
-      "name": "OpenAI Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
+      "id": "node-gemini-model",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
       "position": [40, 540],
-      "notes": "Requires an OpenAI credential. Any chat model works - swap for your preferred provider if needed."
+      "notes": "Requires a 'Google Gemini (PaLM) API' credential - get a free API key at https://aistudio.google.com/app/apikey. Any chat model works; swap the provider if you prefer."
     },
     {
       "parameters": {
@@ -335,7 +330,7 @@
     "Build FAQ Context": {
       "main": [[{ "node": "Classify & Draft Answer", "type": "main", "index": 0 }]]
     },
-    "OpenAI Chat Model": {
+    "Google Gemini Chat Model": {
       "ai_languageModel": [[{ "node": "Classify & Draft Answer", "type": "ai_languageModel", "index": 0 }]]
     },
     "FAQ Output Parser": {

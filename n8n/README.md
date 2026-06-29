@@ -25,7 +25,7 @@ Chat trigger → Prepare Input → Download FAQ (Drive .xlsx) → Parse spreadsh
 | Trigger | **When chat message received** | Learner types a question (one-click test chat). |
 | — | **Prepare Input** | Captures query + metadata (name, email, session, timestamp). |
 | Act #1 (retrieve) | **Download FAQ from Drive** → **Parse FAQ Spreadsheet** → **Build FAQ Context** | Reads `Yamini_Week3_FAQ_Knowledge_Base.xlsx` and turns it into LLM context. |
-| Reason | **Classify & Draft Answer** (+ **OpenAI Chat Model**, **FAQ Output Parser**) | LLM classifies the query, decides if a human is needed, and drafts the answer. Returns structured JSON (`category`, `intent`, `needs_human`, `confidence`, `answer`). |
+| Reason | **Classify & Draft Answer** (+ **Google Gemini Chat Model**, **FAQ Output Parser**) | LLM classifies the query, decides if a human is needed, and drafts the answer. Returns structured JSON (`category`, `intent`, `needs_human`, `confidence`, `answer`). |
 | Route | **Needs Human?** | Branches on `needs_human`. |
 | Escalate | **Escalate to Human** → **Notify Support Team** | Holding message to learner + email to the support queue. |
 | Answer | **Auto-Answer** | Sends the FAQ-grounded answer back. |
@@ -40,7 +40,9 @@ learner-facing output, and a **human-escalation branch**.
 
 1. **Import** `Yamini_Week3_AI_Support_Agent.json` (Workflows → ⋯ → Import from File).
 2. **Connect credentials** on these nodes:
-   - **OpenAI Chat Model** → an OpenAI credential (model preset to `gpt-4o-mini`; swap if you like).
+   - **Google Gemini Chat Model** → a **Google Gemini (PaLM) API** credential.
+     Get a free API key at <https://aistudio.google.com/app/apikey>, then paste it
+     into the credential. (Model preset to `models/gemini-2.0-flash`; swap if you like.)
    - **Download FAQ from Drive** → a Google Drive credential, then click the
      `File` field and **select `Yamini_Week3_FAQ_Knowledge_Base.xlsx`** from the list.
    - **Log to Yamini_week3_Responses** → a Google Sheets credential, then paste
